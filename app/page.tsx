@@ -18,7 +18,12 @@ const sections: Section[] = ['overview', 'products', 'projects', 'experience', '
 
 export default function Home() {
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const activeSection = useScrollSpy(sections);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -33,12 +38,21 @@ export default function Home() {
   }, []);
 
   const scrollToSection = (section: Section) => {
+    if (typeof window === 'undefined') return;
     const element = document.getElementById(section);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setCommandPaletteOpen(false);
     }
   };
+
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-bg-0">
+        <div className="text-muted">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">

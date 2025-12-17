@@ -1,14 +1,28 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import Particles from 'react-tsparticles';
 import { loadSlim } from 'tsparticles-slim';
 import type { Engine } from 'tsparticles-engine';
 
 export default function ParticlesBackground() {
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadSlim(engine);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
   }, []);
+
+  const particlesInit = useCallback(async (engine: Engine) => {
+    try {
+      await loadSlim(engine);
+    } catch (error) {
+      console.error('Failed to load particles:', error);
+    }
+  }, []);
+
+  if (!mounted) {
+    return <div className="absolute inset-0 bg-bg-0" />;
+  }
 
   return (
     <Particles
