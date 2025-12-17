@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { ExternalLink, Github, Sparkles } from 'lucide-react';
 import { projects, type Project } from '@/data/projects';
 import ProjectDrawer from './ProjectDrawer';
@@ -29,7 +30,7 @@ export default function ProjectGallery() {
         <div className="space-y-4">
           <h1 className="text-4xl md:text-5xl font-bold gradient-text">Projects</h1>
           <p className="text-muted text-lg">
-            A collection of products and experiments I've built
+            A collection of products and experiments I&apos;ve built
           </p>
         </div>
 
@@ -135,13 +136,12 @@ function ProjectCard({
     >
       {thumbnail && (
         <div className="relative w-full h-48 overflow-hidden">
-          <img
+          <Image
             src={thumbnail.url}
             alt={thumbnail.alt || project.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.display = 'none';
-            }}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-bg-0/80 to-transparent" />
         </div>

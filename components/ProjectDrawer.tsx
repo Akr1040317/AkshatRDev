@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { X, ExternalLink, Github, Sparkles } from 'lucide-react';
 import { type Project } from '@/data/projects';
 
@@ -52,14 +53,15 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
                   {project.media.map((item, idx) => (
                     <div key={idx} className="rounded-lg overflow-hidden glass">
                       {item.type === 'image' ? (
-                        <img
-                          src={item.url}
-                          alt={item.alt || project.name}
-                          className="w-full h-auto object-cover"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).style.display = 'none';
-                          }}
-                        />
+                        <div className="relative w-full aspect-video">
+                          <Image
+                            src={item.url}
+                            alt={item.alt || project.name}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                          />
+                        </div>
                       ) : (
                         <video
                           src={item.url}

@@ -7,7 +7,7 @@ const leadershipHighlights = [
   {
     icon: Trophy,
     title: 'Cricket Leadership',
-    description: 'Elected Board Director & Team Captain at Orange County Cricket Developmental Team. Named MVP in 2021, 2022, and 2024 seasons. Competed in US Men\'s U23 and US Men\'s National Trials in 2023, 2024, and 2025. Mentored and led emerging cricketers to help develop their interpersonal skills and meet club strategic goals.',
+    description: 'Elected Board Director & Team Captain at Orange County Cricket Developmental Team. Named MVP in 2021, 2022, and 2024 seasons. Competed in US Men&apos;s U23 and US Men&apos;s National Trials in 2023, 2024, and 2025. Mentored and led emerging cricketers to help develop their interpersonal skills and meet club strategic goals.',
     color: 'text-orange',
     bgColor: 'from-orange/10 to-orange/5',
   },
@@ -80,9 +80,9 @@ export default function LeadershipPanel() {
           <h2 className="text-2xl font-bold">Building at Scale</h2>
           <p className="text-muted leading-relaxed">
             Leadership for me means creating environments where people can do their best work.
-            Whether it's captaining a cricket team, scaling a global organization, or mentoring
+            Whether it&apos;s captaining a cricket team, scaling a global organization, or mentoring
             developers, I focus on clear communication, setting vision, and empowering others to
-            succeed. The impact I'm most proud of isn't just the products built, but the teams
+            succeed. The impact I&apos;m most proud of isn&apos;t just the products built, but the teams
             and communities that grew stronger along the way.
           </p>
         </motion.div>

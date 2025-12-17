@@ -25,7 +25,7 @@ export default function ContactPanel() {
         <div className="space-y-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold gradient-text">Contact</h1>
           <p className="text-muted text-lg">
-            Let's build something serious.
+            Let&apos;s build something serious.
           </p>
         </div>
 
