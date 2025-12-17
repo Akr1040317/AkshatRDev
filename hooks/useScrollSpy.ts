@@ -8,6 +8,8 @@ export function useScrollSpy(sections: Section[]) {
   const [activeSection, setActiveSection] = useState<Section>('overview');
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const observerOptions = {
       root: null,
       rootMargin: '-20% 0px -60% 0px',
@@ -26,21 +28,30 @@ export function useScrollSpy(sections: Section[]) {
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const elements: HTMLElement[] = [];
 
-    sections.forEach((section) => {
-      const element = document.getElementById(section);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => {
+    // Wait for DOM to be ready
+    const setupObserver = () => {
       sections.forEach((section) => {
         const element = document.getElementById(section);
         if (element) {
-          observer.unobserve(element);
+          observer.observe(element);
+          elements.push(element);
         }
       });
+    };
+
+    // Use requestAnimationFrame to ensure DOM is ready
+    const rafId = requestAnimationFrame(() => {
+      setupObserver();
+    });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      elements.forEach((element) => {
+        observer.unobserve(element);
+      });
+      observer.disconnect();
     };
   }, [sections]);
 
