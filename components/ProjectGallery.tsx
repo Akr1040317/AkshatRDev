@@ -135,13 +135,17 @@ function ProjectCard({
       className="glass rounded-xl overflow-hidden cursor-pointer hover:bg-panel-2 transition-all neon-glow group min-w-[320px] md:min-w-0"
     >
       {thumbnail && (
-        <div className="relative w-full h-48 overflow-hidden">
+        <div className="relative w-full h-48 overflow-hidden bg-panel">
           <Image
             src={thumbnail.url}
             alt={thumbnail.alt || project.name}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-bg-0/80 to-transparent" />
         </div>

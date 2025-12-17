@@ -53,13 +53,17 @@ export default function ProjectDrawer({ project, onClose }: ProjectDrawerProps) 
                   {project.media.map((item, idx) => (
                     <div key={idx} className="rounded-lg overflow-hidden glass">
                       {item.type === 'image' ? (
-                        <div className="relative w-full aspect-video">
+                        <div className="relative w-full aspect-video bg-panel">
                           <Image
                             src={item.url}
                             alt={item.alt || project.name}
                             fill
                             className="object-cover"
                             sizes="(max-width: 768px) 100vw, 50vw"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                            }}
                           />
                         </div>
                       ) : (
