@@ -1,17 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Home, Briefcase, Clock, Users, Mail, GraduationCap, Code } from 'lucide-react';
+import { Home, Briefcase, Clock, Users, Mail, GraduationCap, Code, Sparkles } from 'lucide-react';
 import clsx from 'clsx';
-import type { Module } from './SidebarNav';
+import { useScrollSpy, type Section } from '@/hooks/useScrollSpy';
 
-interface BottomNavProps {
-  activeModule: Module;
-  onModuleChange: (module: Module) => void;
-}
+const sections: Section[] = ['overview', 'products', 'projects', 'experience', 'education', 'skills', 'leadership', 'contact'];
 
-const navItems: { id: Module; label: string; icon: typeof Home }[] = [
+const navItems: { id: Section; label: string; icon: typeof Home }[] = [
   { id: 'overview', label: 'Overview', icon: Home },
+  { id: 'products', label: 'Products', icon: Sparkles },
   { id: 'projects', label: 'Projects', icon: Briefcase },
   { id: 'experience', label: 'Experience', icon: Clock },
   { id: 'education', label: 'Education', icon: GraduationCap },
@@ -20,19 +18,32 @@ const navItems: { id: Module; label: string; icon: typeof Home }[] = [
   { id: 'contact', label: 'Contact', icon: Mail },
 ];
 
-export default function BottomNav({ activeModule, onModuleChange }: BottomNavProps) {
+interface BottomNavProps {
+  activeSection: Section;
+  onSectionChange: (section: Section) => void;
+}
+
+export default function BottomNav({ activeSection, onSectionChange }: BottomNavProps) {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      onSectionChange(id as Section);
+    }
+  };
+
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 px-4 pb-4">
-      <div className="glass rounded-2xl p-2 flex items-center justify-around">
+      <div className="glass rounded-2xl p-2 flex items-center justify-around overflow-x-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = activeModule === item.id;
+          const isActive = activeSection === item.id;
           return (
             <button
               key={item.id}
-              onClick={() => onModuleChange(item.id)}
+              onClick={() => scrollToSection(item.id)}
               className={clsx(
-                'relative flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-all duration-200 min-w-[60px]',
+                'relative flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-all duration-200 min-w-[60px] flex-shrink-0',
                 isActive ? 'text-white' : 'text-muted'
               )}
             >
@@ -58,4 +69,3 @@ export default function BottomNav({ activeModule, onModuleChange }: BottomNavPro
     </nav>
   );
 }
-

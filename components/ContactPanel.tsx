@@ -16,10 +16,12 @@ export default function ContactPanel() {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 md:px-8 py-12 md:py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+    <section id="contact" className="w-full min-h-screen py-20 md:py-32">
+      <div className="w-full max-w-4xl mx-auto px-4 md:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
         className="space-y-12"
       >
         <div className="space-y-4 text-center">
@@ -100,7 +102,8 @@ export default function ContactPanel() {
           Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
         </motion.div>
       </motion.div>
-    </div>
+      </div>
+    </section>
   );
 }
 

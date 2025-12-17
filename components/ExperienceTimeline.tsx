@@ -9,10 +9,12 @@ export default function ExperienceTimeline() {
   const [expandedId, setExpandedId] = useState<string | null>(experiences[0]?.id || null);
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 md:px-8 py-12 md:py-20">
+    <section id="experience" className="w-full min-h-screen py-20 md:py-32">
+      <div className="w-full max-w-4xl mx-auto px-4 md:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         className="space-y-8"
       >
         <div className="space-y-4">
@@ -121,7 +123,8 @@ export default function ExperienceTimeline() {
           </div>
         </div>
       </motion.div>
-    </div>
+      </div>
+    </section>
   );
 }
 

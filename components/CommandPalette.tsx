@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Home, Briefcase, Clock, GraduationCap, Code, Users, Mail, ExternalLink, Copy, FileText } from 'lucide-react';
+import { Search, Home, Briefcase, Clock, GraduationCap, Code, Users, Mail, ExternalLink, Copy, FileText, Sparkles } from 'lucide-react';
 import clsx from 'clsx';
-import type { Module } from './SidebarNav';
+import { type Section } from '@/hooks/useScrollSpy';
 
 interface CommandPaletteProps {
   isOpen: boolean;
   onClose: () => void;
-  onModuleChange: (module: Module) => void;
+  onSectionChange: (section: Section) => void;
 }
 
 interface Command {
@@ -23,9 +23,18 @@ interface Command {
 export default function CommandPalette({
   isOpen,
   onClose,
-  onModuleChange,
+  onSectionChange,
 }: CommandPaletteProps) {
   const [query, setQuery] = useState('');
+
+  const scrollToSection = (section: Section) => {
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      onSectionChange(section);
+      onClose();
+    }
+  };
 
   const commands: Command[] = [
     {
@@ -33,70 +42,56 @@ export default function CommandPalette({
       label: 'Go to Overview',
       icon: Home,
       category: 'navigation',
-      action: () => {
-        onModuleChange('overview');
-        onClose();
-      },
+      action: () => scrollToSection('overview'),
+    },
+    {
+      id: 'products',
+      label: 'Go to Products',
+      icon: Sparkles,
+      category: 'navigation',
+      action: () => scrollToSection('products'),
     },
     {
       id: 'projects',
       label: 'Go to Projects',
       icon: Briefcase,
       category: 'navigation',
-      action: () => {
-        onModuleChange('projects');
-        onClose();
-      },
+      action: () => scrollToSection('projects'),
     },
     {
       id: 'experience',
       label: 'Go to Experience',
       icon: Clock,
       category: 'navigation',
-      action: () => {
-        onModuleChange('experience');
-        onClose();
-      },
+      action: () => scrollToSection('experience'),
     },
     {
       id: 'education',
       label: 'Go to Education',
       icon: GraduationCap,
       category: 'navigation',
-      action: () => {
-        onModuleChange('education');
-        onClose();
-      },
+      action: () => scrollToSection('education'),
     },
     {
       id: 'skills',
       label: 'Go to Skills',
       icon: Code,
       category: 'navigation',
-      action: () => {
-        onModuleChange('skills');
-        onClose();
-      },
+      action: () => scrollToSection('skills'),
     },
     {
       id: 'leadership',
       label: 'Go to Leadership',
       icon: Users,
       category: 'navigation',
-      action: () => {
-        onModuleChange('leadership');
-        onClose();
-      },
+      action: () => scrollToSection('leadership'),
     },
     {
       id: 'contact',
       label: 'Go to Contact',
       icon: Mail,
       category: 'navigation',
-      action: () => {
-        onModuleChange('contact');
-        onClose();
-      },
+      action: () => scrollToSection('contact'),
     },
     {
       id: 'copy-email',
@@ -226,4 +221,3 @@ export default function CommandPalette({
     </AnimatePresence>
   );
 }
-

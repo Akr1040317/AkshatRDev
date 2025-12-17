@@ -1,18 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Home, Briefcase, Clock, Users, Mail, GraduationCap, Code } from 'lucide-react';
+import { Home, Briefcase, Clock, Users, Mail, GraduationCap, Code, Sparkles } from 'lucide-react';
 import clsx from 'clsx';
+import { useScrollSpy, type Section } from '@/hooks/useScrollSpy';
 
-export type Module = 'overview' | 'projects' | 'experience' | 'education' | 'skills' | 'leadership' | 'contact';
+const sections: Section[] = ['overview', 'products', 'projects', 'experience', 'education', 'skills', 'leadership', 'contact'];
 
-interface SidebarNavProps {
-  activeModule: Module;
-  onModuleChange: (module: Module) => void;
-}
-
-const navItems: { id: Module; label: string; icon: typeof Home }[] = [
+const navItems: { id: Section; label: string; icon: typeof Home }[] = [
   { id: 'overview', label: 'Overview', icon: Home },
+  { id: 'products', label: 'Products', icon: Sparkles },
   { id: 'projects', label: 'Projects', icon: Briefcase },
   { id: 'experience', label: 'Experience', icon: Clock },
   { id: 'education', label: 'Education', icon: GraduationCap },
@@ -21,17 +18,26 @@ const navItems: { id: Module; label: string; icon: typeof Home }[] = [
   { id: 'contact', label: 'Contact', icon: Mail },
 ];
 
-export default function SidebarNav({ activeModule, onModuleChange }: SidebarNavProps) {
+export default function SidebarNav() {
+  const activeSection = useScrollSpy(sections);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <nav className="hidden md:flex fixed left-0 top-0 h-full w-64 flex-col items-start justify-center px-6 z-50">
       <div className="glass rounded-2xl p-4 w-full space-y-2">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = activeModule === item.id;
+          const isActive = activeSection === item.id;
           return (
             <button
               key={item.id}
-              onClick={() => onModuleChange(item.id)}
+              onClick={() => scrollToSection(item.id)}
               className={clsx(
                 'relative w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200',
                 isActive
@@ -67,4 +73,3 @@ export default function SidebarNav({ activeModule, onModuleChange }: SidebarNavP
     </nav>
   );
 }
-

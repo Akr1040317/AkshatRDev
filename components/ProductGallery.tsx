@@ -3,15 +3,15 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { ExternalLink, Code } from 'lucide-react';
-import { projectsOnly, type Project } from '@/data/projectsOnly';
+import { ExternalLink, Sparkles } from 'lucide-react';
+import { products, type Project } from '@/data/products';
 import ProjectDrawer from './ProjectDrawer';
 
-export default function ProjectGallery() {
+export default function ProductGallery() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="w-full min-h-screen py-20 md:py-32">
+    <section id="products" className="w-full min-h-screen py-20 md:py-32">
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -23,17 +23,17 @@ export default function ProjectGallery() {
           {/* Header */}
           <div className="space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold gradient-text flex items-center gap-3">
-              <Code size={32} className="text-blue" />
-              Projects
+              <Sparkles size={32} className="text-purple" />
+              Products
             </h2>
             <p className="text-muted text-lg">
-              Experimental projects and side experiments
+              Production-ready products I&apos;ve built and scaled
             </p>
           </div>
 
-          {/* Projects Grid */}
+          {/* Products Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projectsOnly.map((project, idx) => (
+            {products.map((project, idx) => (
               <ProjectCard
                 key={project.id}
                 project={project}
@@ -117,3 +117,4 @@ function ProjectCard({
     </motion.div>
   );
 }
+

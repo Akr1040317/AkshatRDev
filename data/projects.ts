@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   name: string;
   tagline: string;
-  category: 'featured' | 'labs';
+  category: 'products' | 'projects';
   stack: string[];
   problem: string;
   solution: string;
@@ -25,7 +25,7 @@ export const projects: Project[] = [
     id: 'hive',
     name: 'Hive - Spell Intelligently',
     tagline: 'iOS app and web platform reshaping spelling education through intelligent, pattern-based learning',
-    category: 'featured',
+    category: 'products',
     stack: ['Swift', 'iOS', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase', 'Google Cloud Functions', 'GPT-4 API', 'Merriam-Webster API'],
     problem: 'Students needed a modern, intelligent approach to spelling education that goes beyond rote memorization, focusing on patterns, roots, and language origins.',
     solution: 'Built Hive\'s iOS app and web platform with 60+ pattern-based lessons and quizzes. Integrated Merriam-Webster API with GPT-4 for sentence generation, explanations, and feedback. Developed Next.js/Tailwind educator dashboard with custom list-creation tools and an SLM-based tutor prototype for adaptive coaching.',
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     id: 'prepcenter-uae',
     name: 'PrepCenter™ UAE',
     tagline: 'Official studying platform for Spelling Bee Championship UAE',
-    category: 'featured',
+    category: 'products',
     stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase', 'Google Cloud Functions'],
     problem: 'The Spelling Bee Championship UAE needed an official technology and education partner platform for hundreds of competitors to study effectively with round-based word lists and analytics.',
     solution: 'Engineered PrepCenter™ as the official studying platform with round-based word lists, four study modes (practice, quiz, flashcard, test), comprehensive analytics, and leaderboards. Built to support hundreds of competitors simultaneously.',
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     id: 'gathr',
     name: 'Gathr',
     tagline: 'Campus involvement app connecting clubs and students',
-    category: 'featured',
+    category: 'products',
     stack: ['Swift', 'iOS', 'Firebase', 'Firebase Authentication', 'Google Analytics', 'FCM'],
     problem: 'Students at UF struggled to discover and engage with campus clubs and organizations, while clubs had difficulty reaching students.',
     solution: 'Launched an iOS app with a social media-like interface connecting clubs and students. Integrated Firebase Authentication with GatorLink login for UF-student-only access, implemented push notifications via FCM, and integrated Google Analytics to track events and optimize engagement.',
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     id: 'internify',
     name: 'Internify',
     tagline: 'Job and internship search engine for students',
-    category: 'featured',
+    category: 'projects',
     stack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'MERN Stack'],
     problem: 'Students found it difficult to discover and track internship opportunities across multiple platforms.',
     solution: 'Led a team in developing a web application using the MERN stack. Utilized external Search APIs to populate MongoDB with real-time job postings from LinkedIn, Indeed, and ZipRecruiter. Designed a user dashboard with job filtering, application-progress tracking, and login/registration capabilities.',
@@ -153,7 +153,7 @@ export const projects: Project[] = [
     id: 'marketatomy',
     name: 'MarketAtomy Business Health Assessment',
     tagline: '21-module business health assessment platform',
-    category: 'featured',
+    category: 'products',
     stack: ['PHP', 'MySQL', 'PDO', 'JavaScript', 'HTML/CSS', 'jQuery'],
     problem: 'Businesses needed a comprehensive platform to assess their health across multiple dimensions and optimize growth strategies.',
     solution: 'Led full-stack web development of a 21-module business health assessment platform. Implemented secure user login/registration with OTP verification and hashing/encryption. Employed PHP PDO with parameterized queries to secure against XSS & SQLi attacks, managed MySQL database, and generated server-side PDF reports for clients.',
@@ -185,7 +185,7 @@ export const projects: Project[] = [
     id: 'coding-for-charity',
     name: 'CodingForCharity',
     tagline: 'Connecting developers with nonprofits through web development',
-    category: 'featured',
+    category: 'projects',
     stack: ['React', 'Firebase', 'Material-UI', 'WordPress', 'E-commerce', 'Payment Integration'],
     problem: 'Nonprofits needed websites but lacked budget, while developers wanted to contribute to meaningful causes.',
     solution: 'Founded CodingForCharity, an organization with 70+ members across 8 countries. Built a platform connecting developers with nonprofits, developing websites in exchange for charity donations. Implemented full-stack web development across e-commerce, paywalls, and mobile ordering, developing and managing 40+ websites.',

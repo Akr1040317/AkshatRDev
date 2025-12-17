@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import SidebarNav, { type Module } from '@/components/SidebarNav';
+import { useScrollSpy, type Section } from '@/hooks/useScrollSpy';
+import SidebarNav from '@/components/SidebarNav';
 import BottomNav from '@/components/BottomNav';
 import CommandPalette from '@/components/CommandPalette';
 import OverviewPanel from '@/components/OverviewPanel';
+import ProductGallery from '@/components/ProductGallery';
 import ProjectGallery from '@/components/ProjectGallery';
 import ExperienceTimeline from '@/components/ExperienceTimeline';
 import EducationPanel from '@/components/EducationPanel';
@@ -13,9 +14,11 @@ import SkillsPanel from '@/components/SkillsPanel';
 import LeadershipPanel from '@/components/LeadershipPanel';
 import ContactPanel from '@/components/ContactPanel';
 
+const sections: Section[] = ['overview', 'products', 'projects', 'experience', 'education', 'skills', 'leadership', 'contact'];
+
 export default function Home() {
-  const [activeModule, setActiveModule] = useState<Module>('overview');
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const activeSection = useScrollSpy(sections);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -29,56 +32,35 @@ export default function Home() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const renderModule = () => {
-    switch (activeModule) {
-      case 'overview':
-        return <OverviewPanel onNavigate={setActiveModule} />;
-      case 'projects':
-        return <ProjectGallery />;
-      case 'experience':
-        return <ExperienceTimeline />;
-      case 'education':
-        return <EducationPanel />;
-      case 'skills':
-        return <SkillsPanel />;
-      case 'leadership':
-        return <LeadershipPanel />;
-      case 'contact':
-        return <ContactPanel />;
-      default:
-        return <OverviewPanel onNavigate={setActiveModule} />;
+  const scrollToSection = (section: Section) => {
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setCommandPaletteOpen(false);
     }
   };
 
   return (
     <div className="min-h-screen">
-      <SidebarNav activeModule={activeModule} onModuleChange={setActiveModule} />
-      <BottomNav activeModule={activeModule} onModuleChange={setActiveModule} />
+      <SidebarNav />
+      <BottomNav activeSection={activeSection} onSectionChange={scrollToSection} />
 
-      <main className="md:ml-64 pb-20 md:pb-0 min-h-screen">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeModule}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3 }}
-            className="pt-8 md:pt-12"
-          >
-            {renderModule()}
-          </motion.div>
-        </AnimatePresence>
+      <main className="md:ml-64 pb-20 md:pb-0">
+        <OverviewPanel />
+        <ProductGallery />
+        <ProjectGallery />
+        <ExperienceTimeline />
+        <EducationPanel />
+        <SkillsPanel />
+        <LeadershipPanel />
+        <ContactPanel />
       </main>
 
       <CommandPalette
         isOpen={commandPaletteOpen}
         onClose={() => setCommandPaletteOpen(false)}
-        onModuleChange={(module) => {
-          setActiveModule(module);
-          setCommandPaletteOpen(false);
-        }}
+        onSectionChange={scrollToSection}
       />
     </div>
   );
 }
-
