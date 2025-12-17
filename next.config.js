@@ -5,6 +5,8 @@ const nextConfig = {
     unoptimized: false,
     remotePatterns: [],
   },
+  // Ensure proper output for Vercel
+  output: undefined, // Let Vercel handle this automatically
 }
 
 module.exports = nextConfig
