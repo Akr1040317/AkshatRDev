@@ -9,6 +9,7 @@ import OverviewPanel from '@/components/OverviewPanel';
 import ProjectGallery from '@/components/ProjectGallery';
 import ExperienceTimeline from '@/components/ExperienceTimeline';
 import EducationPanel from '@/components/EducationPanel';
+import SkillsPanel from '@/components/SkillsPanel';
 import LeadershipPanel from '@/components/LeadershipPanel';
 import ContactPanel from '@/components/ContactPanel';
 
@@ -38,6 +39,8 @@ export default function Home() {
         return <ExperienceTimeline />;
       case 'education':
         return <EducationPanel />;
+      case 'skills':
+        return <SkillsPanel />;
       case 'leadership':
         return <LeadershipPanel />;
       case 'contact':

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Linkedin, Github, Copy, Check } from 'lucide-react';
 
-const email = 'akshra0317@gmail.com';
+const email = 'rastogia@ufl.edu';
 
 export default function ContactPanel() {
   const [copied, setCopied] = useState(false);

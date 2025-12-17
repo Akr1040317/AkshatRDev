@@ -10,12 +10,6 @@ interface OverviewPanelProps {
 }
 
 export default function OverviewPanel({ onNavigate }: OverviewPanelProps) {
-  const stats = [
-    { label: 'Students on Hive', value: '600+' },
-    { label: 'Websites Built', value: '40+' },
-    { label: 'Global Organization', value: '70+ members' },
-  ];
-
   return (
     <div className="w-full max-w-5xl mx-auto px-4 md:px-8 py-12 md:py-20">
       <motion.div
@@ -41,22 +35,6 @@ export default function OverviewPanel({ onNavigate }: OverviewPanelProps) {
               intelligent, pattern-based learning.
             </p>
           </div>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {stats.map((stat, idx) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + idx * 0.1 }}
-              className="glass rounded-xl p-6 neon-glow"
-            >
-              <div className="text-3xl font-bold gradient-text mb-2">{stat.value}</div>
-              <div className="text-sm text-muted">{stat.label}</div>
-            </motion.div>
-          ))}
         </div>
 
         {/* Currently Panel */}

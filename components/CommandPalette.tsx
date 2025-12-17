@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Home, Briefcase, Clock, GraduationCap, Users, Mail, ExternalLink, Copy, FileText } from 'lucide-react';
+import { Search, Home, Briefcase, Clock, GraduationCap, Code, Users, Mail, ExternalLink, Copy, FileText } from 'lucide-react';
 import clsx from 'clsx';
 import type { Module } from './SidebarNav';
 
@@ -69,6 +69,16 @@ export default function CommandPalette({
       },
     },
     {
+      id: 'skills',
+      label: 'Go to Skills',
+      icon: Code,
+      category: 'navigation',
+      action: () => {
+        onModuleChange('skills');
+        onClose();
+      },
+    },
+    {
       id: 'leadership',
       label: 'Go to Leadership',
       icon: Users,
@@ -94,7 +104,7 @@ export default function CommandPalette({
       icon: Copy,
       category: 'actions',
       action: async () => {
-        await navigator.clipboard.writeText('akshra0317@gmail.com');
+        await navigator.clipboard.writeText('rastogia@ufl.edu');
         onClose();
       },
     },

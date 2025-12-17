@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Home, Briefcase, Clock, Users, Mail, GraduationCap } from 'lucide-react';
+import { Home, Briefcase, Clock, Users, Mail, GraduationCap, Code } from 'lucide-react';
 import clsx from 'clsx';
 import type { Module } from './SidebarNav';
 
@@ -15,6 +15,7 @@ const navItems: { id: Module; label: string; icon: typeof Home }[] = [
   { id: 'projects', label: 'Projects', icon: Briefcase },
   { id: 'experience', label: 'Experience', icon: Clock },
   { id: 'education', label: 'Education', icon: GraduationCap },
+  { id: 'skills', label: 'Skills', icon: Code },
   { id: 'leadership', label: 'Leadership', icon: Users },
   { id: 'contact', label: 'Contact', icon: Mail },
 ];
