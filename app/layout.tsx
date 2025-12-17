@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import ParticlesBackground from '@/components/ParticlesBackground';
+import dynamic from 'next/dynamic';
+
+const ParticlesBackground = dynamic(() => import('@/components/ParticlesBackground'), {
+  ssr: false,
+});
 
 export const metadata: Metadata = {
   title: 'Akshat Rastogi | Portfolio',
@@ -14,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="antialiased">
         <div className="fixed inset-0 bg-bg-0">
           <ParticlesBackground />
         </div>
