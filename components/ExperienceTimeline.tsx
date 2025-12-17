@@ -54,9 +54,14 @@ export default function ExperienceTimeline() {
                             <h3 className="text-xl font-bold group-hover:text-purple transition-colors">
                               {exp.role}
                             </h3>
+                            {exp.employmentType && (
+                              <span className="px-2 py-0.5 text-xs bg-panel-2 rounded border border-panel text-muted">
+                                {exp.employmentType}
+                              </span>
+                            )}
                           </div>
                           <div className="text-lg text-muted mb-2">{exp.company}</div>
-                          <div className="flex items-center gap-4 text-sm text-muted">
+                          <div className="flex flex-wrap items-center gap-4 text-sm text-muted">
                             <span>{exp.period}</span>
                             {exp.location && (
                               <span className="flex items-center gap-1">
