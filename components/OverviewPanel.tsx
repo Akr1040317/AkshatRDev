@@ -87,6 +87,13 @@ export default function OverviewPanel({ onNavigate }: OverviewPanelProps) {
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </button>
           <button
+            onClick={() => onNavigate('skills')}
+            className="glass-2 rounded-xl px-6 py-3 font-semibold flex items-center gap-2 hover:bg-panel-2 transition-colors neon-glow group"
+          >
+            View Skills
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+          </button>
+          <button
             onClick={() => onNavigate('contact')}
             className="glass-2 rounded-xl px-6 py-3 font-semibold flex items-center gap-2 hover:bg-panel-2 transition-colors neon-glow group"
           >
